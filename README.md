@@ -16,19 +16,14 @@ sudo apt-get install build-essential bison flex byacc
 
 ## Building
 
-```
-cd tools
-make -f Makefile.suite
-```
-
-This builds `dsdgen` (data generator) and `dsqgen` (query generator) in the `tools/` directory.
-
 To rebuild from scratch:
 
 ```
 cd tools
 make clean; make
 ```
+This builds `dsdgen` (data generator) and `dsqgen` (query generator) in the `tools/` directory.
+
 
 ### Note on modern GCC
 

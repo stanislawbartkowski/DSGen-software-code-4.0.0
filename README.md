@@ -23,6 +23,20 @@ make -f Makefile.suite
 
 This builds `dsdgen` (data generator) and `dsqgen` (query generator) in the `tools/` directory.
 
+To rebuild from scratch:
+
+```
+cd tools
+make clean; make
+```
+
+### Note on modern GCC
+
+This is old K&R-style C code, so `LINUX_CFLAGS` in `tools/makefile` includes
+`-Wno-old-style-definition -Wno-implicit-int -fcommon` to keep it compiling under
+modern GCC, which errors on implicit `int` types and no longer defaults to
+`-fcommon`.
+
 ## Layout
 
 * `tools/` — C source for `dsdgen` and `dsqgen`

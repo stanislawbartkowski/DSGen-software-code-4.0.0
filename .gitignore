@@ -27,3 +27,5 @@ tools/.ctags_updated
 *.swp
 *.swo
 .*.sw?
+dat/
+queries/

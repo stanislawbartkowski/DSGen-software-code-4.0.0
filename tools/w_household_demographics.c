@@ -43,7 +43,11 @@
 #include <netinet/in.h>
 #endif
 #ifndef USE_STDLIB_H
+#ifdef __APPLE__
+#include <stdlib.h>
+#else
 #include <malloc.h>
+#endif
 #endif
 #include "genrand.h"
 #include "w_household_demographics.h"

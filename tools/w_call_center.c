@@ -44,7 +44,11 @@
 #include <netinet/in.h>
 #endif
 #ifndef USE_STDLIB_H
+#ifdef __APPLE__
+#include <stdlib.h>
+#else
 #include <malloc.h>
+#endif
 #endif
 #include "w_call_center.h"
 #include "date.h"

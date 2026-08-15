@@ -39,7 +39,11 @@
 #include <stdio.h>
 #include <ctype.h>
 #ifndef USE_STDLIB_H
+#ifdef __APPLE__
+#include <stdlib.h>
+#else
 #include <malloc.h>
+#endif
 #endif
 #include "error_msg.h"
 #include "grammar.h"

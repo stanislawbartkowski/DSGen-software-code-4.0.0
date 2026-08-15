@@ -37,7 +37,11 @@
 /*** includes ***/
 #include <stdlib.h>
 #ifndef USE_STDLIB_H
+#ifdef __APPLE__
+#include <stdlib.h>
+#else
 #include <malloc.h>
+#endif
 #endif
 #include <stdio.h>
 #include <math.h>

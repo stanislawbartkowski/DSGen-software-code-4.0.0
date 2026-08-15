@@ -42,7 +42,11 @@
 #include <ctype.h>
 #include <math.h>
 #ifndef _POSIX_SOURCE
+#ifdef __APPLE__
+#include <stdlib.h>
+#else
 #include <malloc.h>
+#endif
 #endif /* POSIX_SOURCE */
 #include <fcntl.h>
 #ifdef AIX

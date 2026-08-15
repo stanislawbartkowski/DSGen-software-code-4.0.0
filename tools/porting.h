@@ -43,7 +43,14 @@
 #endif
 
 #ifdef USE_VALUES_H
+#ifdef __APPLE__
+#include <limits.h>
+#ifndef MAXINT
+#define MAXINT INT_MAX
+#endif
+#else
 #include <values.h>
+#endif
 #endif
 
 #ifdef USE_LIMITS_H

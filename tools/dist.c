@@ -38,7 +38,11 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <assert.h>
+#ifdef __APPLE__
+#include <stdlib.h>
+#else
 #include <malloc.h>
+#endif
 #ifdef WIN32
 #include <io.h>
 #include <stdlib.h>
@@ -52,7 +56,11 @@
 #include <sys/types.h>
 #endif
 #ifndef USE_STDLIB_H
+#ifdef __APPLE__
+#include <stdlib.h>
+#else
 #include <malloc.h>
+#endif
 #endif
 #include "config.h"
 #include "decimal.h"

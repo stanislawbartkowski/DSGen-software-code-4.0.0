@@ -47,7 +47,11 @@
 #else
 #include <strings.h>
 #endif
+#ifdef __APPLE__
+#include <stdlib.h>
+#else
 #include <malloc.h>
+#endif
 #include "keywords.h"
 #include "StringBuffer.h"
 #include "expr.h"

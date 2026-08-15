@@ -88,7 +88,7 @@ LIBS		= $($(OS)_LIBS)
 # YACC
 AIX_YACC	= yacc
 HPUX_YACC	= bison -y
-LINUX_YACC	= yacc
+LINUX_YACC	= bison -y
 NCR_YACC	= yacc
 SOLARIS_YACC	= yacc
 SOL86_YACC	= yacc

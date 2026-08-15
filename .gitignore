@@ -21,6 +21,7 @@ tools/tables.h
 tools/tpcds.idx
 tools/tpcds.idx.h
 tools/.ctags_updated
+tools/tags
 
 # Editor/OS temp files
 *~

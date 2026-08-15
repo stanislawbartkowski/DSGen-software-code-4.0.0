@@ -114,6 +114,43 @@ are split into separate templates here (`query14a`/`query14b`,
 `query23a`/`query23b`, `query24a`/`query24b`, `query39a`/`query39b`), so
 the list has 103 entries.
 
+## Qualification data and queries
+
+The qualification run uses the scale-1 (1 GB) dataset — generate it exactly
+as above with `-scale 1` (the "valid for QUALIFICATION ONLY" warning is
+expected):
+
+```
+cd tools
+mkdir -p ../dat
+./dsdgen -scale 1 -dir ../dat -force
+```
+
+For the queries, add `-qualify` so `dsqgen` binds the fixed qualification
+substitution values (in ascending query order) instead of random ones:
+
+```
+cd tools
+mkdir -p ../queries
+./dsqgen -directory ../dbt_query_templates -input ../dbt_query_templates/templates.lst \
+         -dialect dbt -scale 1 -qualify -output_dir ../queries
+```
+
+Expected results for the qualification queries against the scale-1 data are
+in `answer_sets/` (`<query>.ans`; queries whose ordering depends on NULL
+placement have `_NULLS_FIRST`/`_NULLS_LAST` variants).
+
+Note: in qualification mode `dsqgen` wraps each query in `[_BEGIN]`/`[_END]`
+substitutions, which only the `dbt` dialect template defines — with the
+stock dialects in `query_templates/` it fails with
+`Substitution '_END' is used before being initialized`. To use one of those
+dialects with `-qualify`, add these two lines to its `.tpl` file:
+
+```
+define _BEGIN = "";
+define _END = "";
+```
+
 ## Layout
 
 * `tools/` — C source for `dsdgen` and `dsqgen`

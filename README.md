@@ -127,11 +127,29 @@ mkdir -p ../dat
 ```
 
 For the queries, add `-qualify` so `dsqgen` binds the fixed qualification
-substitution values (in ascending query order) instead of random ones:
+substitution values instead of random ones. `dsqgen` has no option to write
+one file per query (it always writes a whole stream into `query_0.sql`), so
+to get a separate `queryN.sql` per template, run it once per template with
+`-template` and capture stdout via `-filter`:
 
 ```
 cd tools
 mkdir -p ../queries
+while read t; do
+  ./dsqgen -directory ../dbt_query_templates -template "$t" \
+           -dialect dbt -scale 1 -qualify -filter Y \
+           > "../queries/${t%.tpl}.sql" 2>/dev/null
+done < ../dbt_query_templates/templates.lst
+```
+
+This produces one file per template (`query1.sql` … `query99.sql`, 103
+files with the a/b splits). The `2>/dev/null` only hides the repeated
+"valid for QUALIFICATION ONLY" warning, which is printed to stderr.
+
+If a single file with all queries in ascending order is fine, the one-shot
+form works too:
+
+```
 ./dsqgen -directory ../dbt_query_templates -input ../dbt_query_templates/templates.lst \
          -dialect dbt -scale 1 -qualify -output_dir ../queries
 ```
